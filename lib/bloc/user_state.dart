@@ -16,4 +16,8 @@ class Loaded extends UserState {
 
 class Error extends UserState {}
 
-class UserDetail extends UserState {}
+class UserDetail extends UserState {
+  final DetailUser detailUser;
+
+  UserDetail({@required this.detailUser});
+}

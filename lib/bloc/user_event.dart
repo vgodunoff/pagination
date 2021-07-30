@@ -4,4 +4,8 @@ abstract class UserEvent {}
 
 class FetchData extends UserEvent {}
 
-class DetailData extends UserEvent {}
+class DetailData extends UserEvent {
+  final String userName;
+
+  DetailData({@required this.userName});
+}

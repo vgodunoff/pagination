@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 // import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:github_users/model/detail_user.dart';
 import 'package:github_users/model/user_model.dart';
 import 'package:github_users/repo/repository.dart';
 
@@ -20,7 +21,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield Loading(isLoading: true);
       // print(state);
       try {
-        users = await repository.getUsers(repository.urlUsers);
+        users = await repository.getPagiUsers();
         yield Loaded(users: users);
         // print(state);
       } catch (e) {
@@ -31,14 +32,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         // print(state);
       }
     }
-    // if (event is DetailData) {
-    //   var postStr = await repository.loadJsonStr(
-    //       repository.urlPosts, Repository.postsModel);
-    //   posts = postFromJson(postStr);
-    //   yield UserDetail(
-    //     user: users[event.id],
-    //     post: posts,
-    //   );
-    // }
+    if (event is DetailData) {
+      DetailUser detailUser =
+          await repository.getDetailSingleUser(false, event.userName);
+      print(detailUser);
+      yield UserDetail(detailUser: detailUser);
+    }
   }
 }
