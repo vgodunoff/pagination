@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_users/bloc/user_bloc.dart';
 import 'package:github_users/repo/repository.dart';
-import 'package:github_users/ui/home.dart';
 import 'package:github_users/ui/users_pagination.dart';
 
 void main() {
